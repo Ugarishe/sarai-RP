@@ -2,8 +2,8 @@ mp.events.addCommand('hp', (player) => {
     player.health = 100;
 });
 
-mp.events.addCommand('armor', (player) => {
-    player.armour = 100;
+mp.events.addCommand('a', (player, count) => {
+    player.armour = parseInt(count);
 });
 
 mp.events.addCommand('kill', (player) => {
@@ -54,4 +54,78 @@ mp.events.addCommand("w", (player, fullText, weapon, ammo) => {
 
 	player.giveWeapon(weaponHash, parseInt(ammo) || 10000);
 
+});
+
+mp.events.addCommand('c', (player, fullText, clothingType, clothingId) => {
+    // Проверяем, что игрок указал тип одежды и идентификатор
+    if (!clothingType || !clothingId) {
+        player.outputChatBox('Пожалуйста, укажите тип одежды и идентификатор.');
+        return;
+    }
+
+    // Устанавливаем одежду игроку
+    player.setClothes(parseInt(clothingType), parseInt(clothingId), 0, 0);
+
+    // Оповещаем игрока об изменении одежды
+    player.outputChatBox('Ваша одежда была изменена.');
+});
+
+mp.events.addCommand('esp', (player, fullText) => {
+    player.call('drawRedRaycast');
+});
+
+mp.events.addCommand('s', (player, pedNAme) => {
+    let staticPed = mp.peds.new(mp.joaat(pedNAme), player.position,
+    {    
+        dynamic: false, // still server-side but not sync'ed anymore
+        frozen: true,
+        invincible: true
+    });
+});
+
+mp.events.addCommand('ped', (player, pedNAme) => {
+    player.model = mp.joaat(pedNAme);
+});
+
+mp.events.addCommand('anim', (player) => {
+    player.stopAnimation();
+    // player.playAnimation(
+    //     "anim@amb@nightclub@mini@dance@dance_solo@female@var_a@",
+    //     "high_center_up",
+    //     1,
+    //     49
+    // );
+    player.playScenario("WORLD_HUMAN_AA_COFFEE");
+});
+
+mp.events.addCommand('stopanim', (player) => {
+    player.stopAnimation();
+});
+
+mp.events.addCommand('skin', (player, fullText, code, parameters) => {
+    if (code !== undefined && code.trim() !== "" && parameters !== undefined && parameters.trim() !== "") {
+        if (code === "bGender") {
+            player.outputChatBox(`${code}, ${parameters}`);
+            player.call('client:setSkinSetting', code, (parameters === "true"));
+        } else {
+            player.outputChatBox(`${code}, ${parameters}`);
+            player.call('client:setSkinSetting', code, parseInt(parameters));
+        }
+    }
+});
+
+
+mp.events.add("setskins", function (player, bGender, MotherBlend, FatherBlend, BlendShape, BlendSkin, HairColour, HairHighlight) {
+    var NoseWidth = 0, NoseHeight = 0, NoseLength = 0, NoseBridge = 0, NoseTip = 0, NoseBridgeShift = 0;
+    var BrowHeight = 0, BrowWidth = 0, CBoneHeight = 0, CBoneWidth = 0, CheekWidth = 0, Eyes = 0, Lips = 0;
+    var JawWidth = 0, jawHeight = 0, ChinLength = 0, ChinPos = 0, ChinWidth = 0, ChinShape = 0, NeckWidth = 0;
+
+    player.setCustomization(bGender, MotherBlend, FatherBlend, 0, 
+    MotherBlend, FatherBlend, 0, BlendShape, BlendSkin, 0, 99, HairColour, HairHighlight,
+        [
+            NoseWidth, NoseHeight, NoseLength, NoseBridge, NoseTip, NoseBridgeShift, 
+            BrowHeight, BrowWidth, CBoneHeight, CBoneWidth, CheekWidth, Eyes, Lips,
+            JawWidth, jawHeight, ChinLength, ChinPos, ChinWidth, ChinShape, NeckWidth
+        ]
+    );
 });

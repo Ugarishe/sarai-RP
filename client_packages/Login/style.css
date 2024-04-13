@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  align-items: center;
+  /* background-color: #ffffff; */
+  /* background-image: url(images/gta-bg.jpg); */
+  background-size: cover;
+}
+
+.section-form {
+  position: relative;
+  height: 1235px;
+  width: 983px;
+  margin: auto;
+  display: block;
+}
+
+.img-bg-form {
+  height: 1235px;
+  width: 983px;
+  margin: auto;
+  display: block;
+}
+
+.input {
+  font-size: 40px;
+  height: 100px;
+  position: absolute;
+  z-index: 2;
+  width: 75%;
+  border-radius: 20px;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.input:hover {
+  box-shadow: 0px 0px 30px rgb(255, 255, 255);
+}
+
+.login {
+  top: 20%;
+  left: 12%;
+}
+
+.mail {
+  top: 35%;
+  left: 12%;
+}
+
+.password--1 {
+  top: 50%;
+  left: 12%;
+}
+
+.password--2 {
+  top: 65%;
+  left: 12%;
+}
+
+.submit-button {
+  font-size: 60px;
+  color: white;
+  height: 150px;
+  position: absolute;
+  z-index: 2;
+  border-radius: 20px;
+  bottom: 6%;
+  width: 80%;
+  left: 98.5px;
+  box-shadow: 0px 0px 45px red;
+  background-color: #e61b00;
+  transition: background-color 0.4s ease,
+   box-shadow 0.4s ease,
+   color 0.4s ease;
+}
+
+.submit-button:hover {
+  color: rgb(255, 186, 186);
+  box-shadow: 0px 0px 100px rgb(255, 15, 15);
+  background-color: #ff553e;
+}
+

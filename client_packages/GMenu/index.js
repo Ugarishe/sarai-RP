@@ -20,8 +20,9 @@ mp.keys.bind(0xC0, true, function() { // 0xC0 - это код клавиши "ba
 });
 
 mp.events.add("client:GMenu:startInterfase", () => {
-    mp.game.ui.displayHud(false);
+    mp.game.ui.displayHud(true);
     aimСursor = mp.browsers.new("package://aimCursor.html");
+    //aimСursor = mp.browsers.new("package://Login/index.html");
 });
 
 setInterval(() => {
@@ -72,7 +73,7 @@ function pointingAt(distance) {
 mp.keys.bind(0x47, true, function() {
 
     if(touchObject){
-        if(touchObject.type === "vehicle"){
+        if(touchObject.type === "vehicle" && !GMenuVehicle){
             saveObject = touchObject
             GMenuVehicle = mp.browsers.new("package://GMenu/GMenuVehicle.html");
             mp.game.graphics.startScreenEffect("BeastLaunch",0,true);
