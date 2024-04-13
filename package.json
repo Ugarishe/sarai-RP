@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/ragemp-s": "https://github.com/CocaColaBear/types-ragemp-s/tarball/master"
+  }
+}
