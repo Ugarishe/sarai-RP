@@ -11,10 +11,10 @@ require('./LogRegMenu');
 var mysql = require('mysql'); // подключаем библиотеку к скрипту
 
 var connection = mysql.createConnection({ // настройки подключения к базе данных
-    host     : 'mysql104.1gb.ru',
-    user     : 'gb_sarairp2',
-    password : 'N8-S3CjZVAwS',
-    database : 'gb_sarairp2'
+    host     : 'mysql98.1gb.ru',
+    user     : 'gb_sarairp',
+    password : 'Kz37JwK-ejwY',
+    database : 'gb_sarairp'
 });
 
 connection.connect(function(err) { // подключаемся
