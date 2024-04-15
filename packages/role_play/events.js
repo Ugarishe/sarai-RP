@@ -1,20 +1,23 @@
-mp.events.add('playerJoin', (player) => {
-    player.name = player.socialClub;
-    mp.events.call('spawnInPosition', player);
-    player.call('client:GMenu:startInterfase');
+// В модуле регестрации
 
-});
+// mp.events.add('playerJoin', (player) => {
+//     player.name = player.socialClub;
+//     mp.events.call('spawnInPosition', player);
+//     player.call('client:GMenu:startInterfase');
+
+// });
 
 mp.events.add("spawnInPosition", (player) => {
     player.call('moveSkyCamera', [player, 'up', 1, false]);
 
-    // After 5 seconds, camera start to go back to player.
-    setTimeout(() => {
-        player.spawn(new mp.Vector3(2693.84, 1664.51, 24.63));
-        player.call('moveSkyCamera', [player, 'down']);
-    }, 5000);
-
+    player.position = new mp.Vector3(2693.84, 1664.51, 24.63);
     player.health = 100;
+    setTimeout(() => {
+        player.call('moveSkyCamera', [player, 'down']);
+        setTimeout(() => {
+            player.dimension = 0;
+        }, 5000);
+    }, 5000);
 });
 
 mp.events.add("delateVehicle", function (player, vehicleData) {

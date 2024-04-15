@@ -8,22 +8,22 @@ body {
 
 .section-form {
   position: relative;
-  height: 1235px;
-  width: 983px;
+  height: 864px;
+  width: 688px;
   margin: auto;
   display: block;
 }
 
 .img-bg-form {
-  height: 1235px;
-  width: 983px;
+  height: 864px;
+  width: 688px;
   margin: auto;
   display: block;
 }
 
 .input {
   font-size: 40px;
-  height: 100px;
+  height: 9%;
   position: absolute;
   z-index: 2;
   width: 75%;
@@ -64,7 +64,7 @@ body {
   border-radius: 20px;
   bottom: 6%;
   width: 80%;
-  left: 98.5px;
+  left: 10%;
   box-shadow: 0px 0px 45px red;
   background-color: #e61b00;
   transition: background-color 0.4s ease,
@@ -74,7 +74,7 @@ body {
 
 .submit-button:hover {
   color: rgb(255, 186, 186);
-  box-shadow: 0px 0px 100px rgb(255, 15, 15);
-  background-color: #ff553e;
+  box-shadow: 0px 0px 80px rgb(255, 15, 15);
+  background-color: #ff5e00;
 }
 

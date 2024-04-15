@@ -105,17 +105,16 @@ mp.events.addCommand('stopanim', (player) => {
 mp.events.addCommand('skin', (player, fullText, code, parameters) => {
     if (code !== undefined && code.trim() !== "" && parameters !== undefined && parameters.trim() !== "") {
         if (code === "bGender") {
-            player.outputChatBox(`${code}, ${parameters}`);
-            player.call('client:setSkinSetting', code, (parameters === "true"));
+            player.call('client:setSkinSetting', [code, (parameters === "true")]);
         } else {
-            player.outputChatBox(`${code}, ${parameters}`);
-            player.call('client:setSkinSetting', code, parseInt(parameters));
+            player.call('client:setSkinSetting', [code, parseInt(parameters)]);
         }
     }
 });
 
 
-mp.events.add("setskins", function (player, bGender, MotherBlend, FatherBlend, BlendShape, BlendSkin, HairColour, HairHighlight) {
+mp.events.add("setskins", function (player, bGender, MotherBlend, FatherBlend, BlendShape, BlendSkin, HairColour, HairHighlight, Hair) {
+
     var NoseWidth = 0, NoseHeight = 0, NoseLength = 0, NoseBridge = 0, NoseTip = 0, NoseBridgeShift = 0;
     var BrowHeight = 0, BrowWidth = 0, CBoneHeight = 0, CBoneWidth = 0, CheekWidth = 0, Eyes = 0, Lips = 0;
     var JawWidth = 0, jawHeight = 0, ChinLength = 0, ChinPos = 0, ChinWidth = 0, ChinShape = 0, NeckWidth = 0;
@@ -128,4 +127,9 @@ mp.events.add("setskins", function (player, bGender, MotherBlend, FatherBlend, B
             JawWidth, jawHeight, ChinLength, ChinPos, ChinWidth, ChinShape, NeckWidth
         ]
     );
+    player.setClothes(2, Hair, 0, 0);
+});
+
+mp.events.addCommand('god', (player, ifGod) => {
+    player.call('client:god');
 });

@@ -20,5 +20,28 @@
     <input type="password" class="input password password--2" placeholder="Повторите ваш пароль">
     <button class="submit-button" type="submit">Далее</button>
   </form>
+<script>
+
+  document.querySelector(".submit-button").addEventListener("click", function () {
+    event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
+
+    // Получаем значения полей формы
+    const login = document.querySelector('.login').value;
+    const email = document.querySelector('.mail').value;
+    const password = document.querySelector('.password--1').value;
+    const password2 = document.querySelector('.password--2').value;
+
+    var data = {
+      type: 'auth',
+      login: login,
+      password: password,
+      email:email
+    }
+    // mp.events.callRemote('server:LogRegController', JSON.stringify(data));
+
+    mp.trigger("client:closeLogRegMenuAndSpawn");
+  });
+</script>
+
 </body>
 </html>

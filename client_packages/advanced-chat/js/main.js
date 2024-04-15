@@ -1,5 +1,5 @@
 const settings = {
-    timeStamp: false,
+    timeStamp: true,
     removeInputColors: false,
     characterCount: false,
     lowerCaseCommand: false,
@@ -123,6 +123,7 @@ const sendInput = () => {
     CHAR_COUNT.innerText = `0/${settings.maxLength}`;
     setChatInputStatus(false);
 }
+
 
 const onArrowUp = () => {
     if(inputHistoryPosition == inputHistory.length - 1)

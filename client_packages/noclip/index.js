@@ -52,7 +52,6 @@ function startNoClip() {
   noClipCamera.setActive(true);
   mp.game.cam.renderScriptCams(true, false, 0, true, false);
   localPlayer.freezePosition(true);
-  localPlayer.setInvincible(true);
   localPlayer.setVisible(false, false);
   localPlayer.setCollision(false, false);
   localPlayer.dimension = dimensionNoClip;
@@ -67,7 +66,6 @@ function stopNoClip() {
   }
   mp.game.cam.renderScriptCams(false, false, 0, true, false);
   localPlayer.freezePosition(false);
-  localPlayer.setInvincible(false);
   localPlayer.setVisible(true, false);
   localPlayer.setCollision(true, false);
   localPlayer.dimension = 0; 
