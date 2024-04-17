@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  width: 90%;
+  height: 100vh;
+  margin-inline: AUTO;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+button {
+  background-color: #00a2ff;
+  width: 140px;
+  height: 50px;
+  margin-bottom: 100px;
+}

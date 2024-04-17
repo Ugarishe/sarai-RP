@@ -75,12 +75,14 @@ mp.events.addCommand('esp', (player, fullText) => {
 });
 
 mp.events.addCommand('s', (player, pedNAme) => {
-    let staticPed = mp.peds.new(mp.joaat(pedNAme), player.position,
-    {    
-        dynamic: false, // still server-side but not sync'ed anymore
-        frozen: true,
-        invincible: true
-    });
+    // let staticPed = mp.peds.new(mp.joaat(pedNAme), player.position,
+    // {    
+    //     dynamic: false, // still server-side but not sync'ed anymore
+    //     frozen: true,
+    //     invincible: true
+    // });
+
+    player.call('clone');
 });
 
 mp.events.addCommand('ped', (player, pedNAme) => {

@@ -26,10 +26,11 @@ mp.events.add("client:GMenu:startInterfase", () => {
 });
 
 setInterval(() => {
-    // Получаем массив всех игроков на сервере
-    const players = mp.players.toArray();
-    // Выводим количество игроков в консоль
-    aimСursor.execute(`updatePlayerCount(${players.length});`);
+    if(aimСursor){
+        const players = mp.players.toArray();
+        // Выводим количество игроков в консоль
+        aimСursor.execute(`updatePlayerCount(${players.length});`);
+    }
 }, 5000);
 
 // Создание интерфейса для отображения квадратика
@@ -37,11 +38,13 @@ mp.events.add("render", () => {
     touchObject = pointingAt(8); // Проверяем направление камеры
 
     // Отображение квадратика, если игрок смотрит на машину
-    if (touchObject) {
-        aimСursor.execute(`changeLineColor(true);`); // Вызываем функцию showSquare() в HTML для отображения квадратика
-    }
-    else{
-        aimСursor.execute(`changeLineColor(false);`);
+    if(aimСursor){
+        if (touchObject) {
+            aimСursor.execute(`changeLineColor(true);`); // Вызываем функцию showSquare() в HTML для отображения квадратика
+        }
+        else{
+            aimСursor.execute(`changeLineColor(false);`);
+        }
     }
 });
 

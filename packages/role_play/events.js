@@ -9,13 +9,13 @@
 
 mp.events.add("spawnInPosition", (player) => {
     player.call('moveSkyCamera', [player, 'up', 1, false]);
-
-    player.position = new mp.Vector3(2693.84, 1664.51, 24.63);
-    player.health = 100;
+    player.dimension = 100000 + player.id;
+    player.spawn(new mp.Vector3(2693.84, 1664.51, 24.63));
     setTimeout(() => {
         player.call('moveSkyCamera', [player, 'down']);
         setTimeout(() => {
             player.dimension = 0;
+            player.health = 100;
         }, 5000);
     }, 5000);
 });

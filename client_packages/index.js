@@ -2,7 +2,7 @@ require('./noclip');
 
 require('./MoveSkyCamera');
 
-// require('./GMenu');
+require('./GMenu');
 
 require('./Respawn');
 
@@ -124,6 +124,13 @@ const defaultPercent = {
 }
 
 const randomInt = (min, max) => Math.random() * (max - min) + min;
+
+mp.events.add("clone", () => {
+    let ped = mp.peds.new(mp.joaat('s_m_y_cop_01'), player.position, 0, () => {
+        // Клонировать игрока к педу
+        player.clone(0, ped.networkId, ped.handle);
+    });
+})
 
 mp.events.add("incomingDamage", (sourceEntity, sourcePlayer, targetEntity, weapon, boneIndex, damage) => {
     if (targetEntity.type === "player" && sourcePlayer && !(weapon in ignoreWeapons)) {

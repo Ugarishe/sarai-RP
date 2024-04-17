@@ -5,7 +5,6 @@ mp.events.add('client:showLogRegMenu', function() {
     sceneryCamera = mp.cameras.new('default', new mp.Vector3(2636.6, 1504.7, 107), new mp.Vector3(-22.33, 0.00, -84.58), 40);
     sceneryCamera.setActive(true);
     mp.game.cam.renderScriptCams(true, false, 0, true, false);
-    localPlayer.dimension = 100000 + localPlayer.id;
     localPlayer.freezePosition(true);
     mp.game.ui.displayCash(false);
     mp.game.ui.displayHud(false);
@@ -20,15 +19,19 @@ mp.events.add('client:showLogRegMenu', function() {
     mp.gui.cursor.show(true, true);
 });
 
-mp.events.add('client:closeLogRegMenuAndSpawn', function() {
-    localPlayer.name = localPlayer.socialClub;
-    mp.events.callRemote('spawnInPosition');
-    localPlayer.freezePosition(false);
-    mp.game.ui.displayCash(true);
-    mp.game.ui.displayHud(true);
-    mp.game.ui.displayRadar(true);
-    mp.gui.chat.activate(true);
-    mp.gui.chat.show(true);
+mp.events.add('client:LogReg:sendDataRegister', (login, password, email) => {
+    mp.events.callRemote('server::db:adduserInDB',login, password, email);
+});
+
+mp.events.add('client:LogReg:sendDataLogin', (login, password, userIfSaveUs) => {
+    mp.events.callRemote("server::db:LogReg:LogIn", login, password, userIfSaveUs);
+});
+
+mp.events.add('client::LogReg:sendError', (message) => {
+    LogRegWeb.execute(`WrightErrorMessage("${message}");`);
+});
+
+mp.events.add('client:LogReg:Close', function() {
     
     setTimeout(() => {
         mp.game.cam.renderScriptCams(false, false, 0, true, false);
@@ -43,4 +46,14 @@ mp.events.add('client:closeLogRegMenuAndSpawn', function() {
         LogRegWeb.active = false
         LogRegWeb = null;
     }, 100);
+});
+
+mp.events.add('client:LogReg:complete', function() {
+    mp.events.callRemote('spawnInPosition');
+    localPlayer.freezePosition(false);
+    mp.game.ui.displayCash(true);
+    mp.game.ui.displayHud(true);
+    mp.game.ui.displayRadar(true);
+    mp.gui.chat.activate(true);
+    mp.gui.chat.show(true);
 });
